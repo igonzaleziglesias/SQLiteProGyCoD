@@ -1,6 +1,7 @@
 package sqlitejdbcdriverconnection;
 
 import static sqlitejdbcdriverconnection.Connect.connect;
+import static sqlitejdbcdriverconnection.Connect.disconnect;
 import static sqlitejdbcdriverconnection.Create.createNewTable;
 
 public class SQLiteJDBCDriverConnection {
@@ -10,6 +11,7 @@ public class SQLiteJDBCDriverConnection {
         createNewTable();
         Consultas consulta = new Consultas();
         consulta.setVisible(true);
+        disconnect();
 //Querying quest = new Querying();
 //quest.select("select id from clase where name=\"Cesar\"");
 //        System.out.println("");

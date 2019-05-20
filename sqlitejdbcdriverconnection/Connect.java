@@ -3,11 +3,13 @@ package sqlitejdbcdriverconnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Connect {
-
+    private static Connection conn = null;
     public static void connect() {
-        Connection conn = null;
+       
         try {
             // db parameters
             String url = "jdbc:sqlite:tests.db";
@@ -26,6 +28,14 @@ public class Connect {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
+        }
+    }
+    
+    public static void disconnect(){
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
