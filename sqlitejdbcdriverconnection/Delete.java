@@ -52,6 +52,11 @@ public class Delete {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        try {
+            this.connect().close();
+        } catch (SQLException ex) {
+
+        }
     }
 
 }

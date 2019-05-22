@@ -7,15 +7,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Connect {
-    private static Connection conn = null;
-    public static void connect() {
-       
-        try {
-            // db parameters
-            String url = "jdbc:sqlite:tests.db";
-            // create a connection to the database
-            conn = DriverManager.getConnection(url);
 
+    private static Connection conn = null;
+
+    public static void connect() {
+
+        try {
+            String url = "jdbc:sqlite:tests.db";
+            conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException e) {
@@ -30,8 +29,8 @@ public class Connect {
             }
         }
     }
-    
-    public static void disconnect(){
+
+    public static void disconnect() {
         try {
             conn.close();
         } catch (SQLException ex) {

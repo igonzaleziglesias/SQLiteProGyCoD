@@ -14,9 +14,9 @@ import java.sql.SQLException;
  *
  * @author igonzaleziglesias
  */
-public class App {
+public class Insertar {
 
-    private static Connection connecta() {
+    private static Connection connect() {
         // SQLite connection string
         String url = "jdbc:sqlite:prog.db";
         Connection conn = null;
@@ -32,7 +32,7 @@ public class App {
         String sql = "INSERT INTO clase(id,name,secondname,pais) VALUES(?,?,?,?)";
         String sql2 = "INSERT INTO procedencia (id,pais) VALUES(?,?)";
 
-        try (Connection conn = this.connecta();
+        try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.setString(2, name);
@@ -42,7 +42,7 @@ public class App {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        try (Connection conn = this.connecta();
+        try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql2)) {
             pstmt.setInt(1, id);
             pstmt.setString(2, pais);
@@ -51,7 +51,12 @@ public class App {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
+        
+        try {
+            this.connect().close();
+        } catch (SQLException ex) {
+           
+        }
     }
 
 }

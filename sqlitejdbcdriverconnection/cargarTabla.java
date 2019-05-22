@@ -43,20 +43,22 @@ public class cargarTabla {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
 
-            // loop through the result set
             while (rs.next()) {
                 alumno = new Object[4];
                 alumno[0] = rs.getInt("id");
                 alumno[1] = rs.getString("name");
                 alumno[2] = rs.getString("secondname");
                 alumno[3] = rs.getString("pais");
-//                System.out.println(alumno[0] + " " + alumno[1] + " " + alumno[2]);
-//                modelo.addRow(alumno);
+
                 lista.add(alumno);
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+        try {
+            this.connect().close();
+        } catch (SQLException ex) {
         }
         return lista;
     }
@@ -68,18 +70,19 @@ public class cargarTabla {
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
 
-            // loop through the result set
             while (rs.next()) {
                 datos = new Object[2];
                 datos[0] = rs.getInt("id");
                 datos[1] = rs.getString("pais");
-//                System.out.println(alumno[0] + " " + alumno[1] + " " + alumno[2]);
-//                modelo.addRow(alumno);
                 lista2.add(datos);
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+        try {
+            this.connect().close();
+        } catch (SQLException ex) {
         }
         return lista2;
     }
